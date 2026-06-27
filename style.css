@@ -1,0 +1,132 @@
+/* Basic reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#house-container {
+    position: relative;
+    width: 1536px;
+    height: 1024px;
+    background-image: url('patched_background.png');
+    background-size: cover;
+    overflow: hidden;
+    /* Scale to fit window while preserving aspect ratio */
+    transform-origin: center center;
+    transform: scale(min(1, calc(100vw / 1536), calc(100vh / 1024)));
+}
+
+/* Base styles for windows */
+.window {
+    position: absolute;
+    /* Basic 3D context */
+    perspective: 1500px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+/* Common shutter styles */
+.shutter {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    /* Do not hide backface, so we see the inside of the wooden shutters */
+}
+
+.left-shutter {
+    left: 0;
+    /* Hinge on the right edge (where it connects to the window) */
+    transform-origin: right center;
+}
+
+.right-shutter {
+    right: 0;
+    /* Hinge on the left edge (where it connects to the window) */
+    transform-origin: left center;
+}
+
+/* Default state: closed */
+#window-achievement .left-shutter { transform: rotateY(180deg) scaleX(1.22); }
+#window-achievement .right-shutter { transform: rotateY(-180deg) scaleX(1.22); }
+
+#window-education .left-shutter { transform: rotateY(180deg) scaleX(1.31); }
+#window-education .right-shutter { transform: rotateY(-180deg) scaleX(1.31); }
+
+#window-experience .left-shutter { transform: rotateY(180deg) scaleX(1.36); }
+#window-experience .right-shutter { transform: rotateY(-180deg) scaleX(1.27); }
+
+#window-what-i-build .left-shutter { transform: rotateY(180deg) scaleX(1.24); }
+#window-what-i-build .right-shutter { transform: rotateY(-180deg) scaleX(1.21); }
+
+/* Open states */
+.window.open .left-shutter {
+    transform: rotateY(0deg) scaleX(1) !important;
+}
+
+.window.open .right-shutter {
+    transform: rotateY(0deg) scaleX(1) !important;
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 5;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    font-family: sans-serif;
+}
+
+.content h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Individual window positioning based on the coords */
+/* ACHIEVEMENT */
+#window-achievement { left: 185px; top: 300px; width: 310px; height: 195px; }
+#window-achievement .left-shutter { width: 70px; height: 195px; }
+#window-achievement .right-shutter { width: 70px; height: 195px; }
+#window-achievement .content { left: 70px; right: 70px; }
+
+/* EDUCATION */
+#window-education { left: 550px; top: 370px; width: 360px; height: 130px; }
+#window-education .left-shutter { width: 78px; height: 130px; }
+#window-education .right-shutter { width: 78px; height: 130px; }
+#window-education .content { left: 78px; right: 78px; }
+
+/* EXPERIENCE */
+#window-experience { left: 1010px; top: 300px; width: 335px; height: 195px; }
+#window-experience .left-shutter { width: 70px; height: 195px; }
+#window-experience .right-shutter { width: 75px; height: 195px; }
+#window-experience .content { left: 70px; right: 75px; }
+
+/* WHAT I BUILD */
+#window-what-i-build { left: 155px; top: 630px; width: 329px; height: 175px; }
+#window-what-i-build .left-shutter { width: 73px; height: 175px; }
+#window-what-i-build .right-shutter { width: 75px; height: 175px; }
+#window-what-i-build .content { left: 73px; right: 75px; }

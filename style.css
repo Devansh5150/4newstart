@@ -81,17 +81,12 @@ body, html {
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.95);
     z-index: 5;
-    padding: 10px;
+    padding: 0;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     overflow: hidden;
     border-radius: 4px;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-    font-family: sans-serif;
 }
 
 .content h2 {
@@ -104,6 +99,13 @@ body, html {
     margin: 0;
     font-size: 0.9rem;
     color: #555;
+}
+
+.content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
 }
 
 /* Individual window positioning based on the coords */
